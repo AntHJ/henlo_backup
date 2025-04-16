@@ -1,4 +1,8 @@
 (
+echo "Assigning PATHS";
+export VITASDK=/usr/local/vitasdk;
+export PATH=$VITASDK/bin:$PATH # add vitasdk tool to $PATH;
+
 echo "Compiling the bootstrap";
 cd bootstrap_lite/;
 touch *.c;
