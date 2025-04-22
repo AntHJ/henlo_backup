@@ -26,7 +26,8 @@
 </head>
 <body>
     <h1>Speed Quiz</h1>
-    <div id="quiz">
+    <button id="start-btn" onclick="startTest()">Start Test</button>
+    <div id="quiz" style="display: none;">
         <div class="question">
             <p id="question-text">What is 2 + 2?</p>
             <button onclick="checkAnswer(4)">4</button>
@@ -38,41 +39,8 @@
     <div class="warning" id="warning"></div>
 
     <script>
-        let startTime = Date.now();
+        let startTime;
         let score = 0;
 
-        function checkAnswer(answer) {
-            const correctAnswer = 4; // The correct answer for this question
-
-            // Calculate time taken to answer
-            const timeTaken = (Date.now() - startTime) / 1000; // in seconds
-            const maxTime = 10; // Maximum time to get full points
-
-            if (answer === correctAnswer) {
-                // Calculate points (higher score for quicker answers)
-                const points = Math.max(10 * (1 - timeTaken / maxTime), 1); // Minimum 1 point
-                score += Math.round(points);
-                document.getElementById("result").innerText = `Correct! You scored ${Math.round(points)} points. Total score: ${score}`;
-            } else {
-                document.getElementById("result").innerText = `Wrong answer. Total score: ${score}`;
-            }
-
-            // Reset timer for the next question
-            startTime = Date.now();
-        }
-
-        // Detect when the user navigates away or alt+tabs
-        window.addEventListener("blur", () => {
-            // Reset the score and show a cheating warning
-            score = 0;
-            document.getElementById("result").innerText = `Total score: ${score}`;
-            document.getElementById("warning").innerText = "Stop cheating! Your score has been reset.";
-        });
-
-        // Reset the warning when the user returns focus
-        window.addEventListener("focus", () => {
-            document.getElementById("warning").innerText = "";
-        });
-    </script>
-</body>
-</html>
+        function startTest() {
+            document.getElementById("start-btn").style.display = "
